@@ -103,8 +103,17 @@ function renderButtons() {
 
 }
 
-function renderPrice() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
+
+function renderPrice() {
+  const panelPrice = document.getElementsByTagName('ul')[1];
+  if (state.pepperoni) {
+    panelPrice[0].classList.add('active');
+    
+  }
+  else {
+    panelPrice[0].classList.remove('active')
+  }
 }
 
 renderEverything();
