@@ -106,14 +106,17 @@ function renderButtons() {
   // Iteration 4: change the HTML of `<aside class="panel price">`
 
 function renderPrice() {
-  const panelPrice = document.getElementsByTagName('ul')[1];
-  if (state.pepperoni) {
-    panelPrice[0].classList.add('active');
-    
+  let totalPrice = basePrice
+  let ingredientsList = document.querySelector('aside.panel.price ul')
+  ingredientsList.innerHTML = ""
+
+  for (let ingredientKey in ingredients) {
+    if (state[ingredientKey]) {
+      totalPrice += ingredients[ingredientKey].price
+      ingredientsList.innerHTML += `<li>$${ingredients[ingredientKey].price} ${ingredients[ingredientKey].name.toLowerCase()}</li>`
+    }
   }
-  else {
-    panelPrice[0].classList.remove('active')
-  }
+  document.querySelector('aside.panel.price strong').innerHTML = "$" + totalPrice
 }
 
 renderEverything();
